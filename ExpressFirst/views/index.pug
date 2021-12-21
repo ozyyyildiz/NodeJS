@@ -1,0 +1,50 @@
+extends layout
+
+block content
+
+  section.insert
+    h3 Insert Data
+    form(action="/insert", method="POST")
+      .input
+        label(for="title") Title
+        input(type="text", id="title", name="title")
+      .input
+        label(for="content") Content
+        input(type="text", id="content", name="content")
+      .input
+        label(for="author") Author
+        input(type="text", id="author", name="author")
+      button(type="submit") INSERT
+  section.get
+    h3 Get Data
+    a(href="/get-data") Load DATA
+    .row
+      each item in items ? items : []
+        article.item
+          .row Title: #{item.title}
+          .row Content: #{item.content}
+          .row Author: #{item.author}
+          .row ID: #{item._id}
+  section.update
+    h3 Update Data
+    form(action="/update", method="POST")
+      .input
+        label(for="id") ID
+        input(type="text", id="id", name="id")
+      .input
+        label(for="title") Title
+        input(type="text", id="title", name="title")
+      .input
+        label(for="content") Content
+        input(type="text", id="content", name="content")
+      .input
+        label(for="author") Author
+        input(type="text", id="author", name="author")
+      button(type="submit") UPDATE
+  section.delete
+    h3 Delete Data
+      form(action="/delete", method="POST")
+        .input
+          label(for="id") ID
+          input(type="text", name="id")#id
+        button(type="submit") Delete
